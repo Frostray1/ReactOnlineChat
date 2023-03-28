@@ -1,42 +1,39 @@
-.chat{
-    height: 100%;
-    width: 100%;
+.chat {
+  height: 100%;
+  width: 100%;
+//   background:green;
 }
 
-.headerChat{
-    padding: 0;
-    width: 100%;
-    height: 4em;
-    border-bottom:1px solid rgb(43, 32, 57);
-   
-    h5{
-        padding: 1em 0em 0em 1em;
-        
-    }
+.headerChat {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 4em;
+  border-bottom: 1px solid rgb(43, 32, 57);
+
+  h5 {
+    padding: 1em 0em 0em 1em;
+  }
 }
 
-.chatIcons{
- 
+.chatIcons {
+  font-size: 24px;
+  text-align: right;
 
-    font-size: 24px;
-    text-align: right;
-   
-   svg{
+  svg {
     margin: 1rem 0.7rem 0rem 0rem;
     cursor: pointer;
-
-   }
-
+  }
 }
-
-.messagesChat{
-height: 80%;
-    margin:0;
-
-
+.messageWindow{
+    margin: 0;
+    height: calc(100% - 4em);
 }
-.inputChat{
-    margin:0;
-    // background:green;
-    height: 10.5%;
+.messagesChat {
+  height: calc(100% - 4em);
+  margin: 0;
+}
+.inputChat {
+  margin: 0;
+  height: 3em;
 }

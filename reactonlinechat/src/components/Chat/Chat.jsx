@@ -15,14 +15,16 @@ const Chat = () => {
         <Col className={styles.chatIcons}>
           <AiOutlineVideoCamera />
           <AiOutlineUserAdd />
-          <BsThreeDots/>
+          <BsThreeDots />
         </Col>
       </Row>
-      <Row className={styles.messagesChat}>
-        <Messages/>
-      </Row>
-      <Row className={styles.inputChat}>
-        <Input/>
+      <Row className={styles.messageWindow}>
+        <Row className={styles.messagesChat}>
+          <Messages />
+        </Row>
+        <Row className={styles.inputChat}>
+          <Input />
+        </Row>
       </Row>
     </div>
   );

@@ -37,7 +37,7 @@ const Home = () => {
             </Row>
             <Row className={styles.chat}>
               <Col xs={4} className={styles.membersList}>
-                <Row >
+                <Row>
                   <div className={styles.profile}>
                     <img src="/image/maxresdefault.jpeg" alt="iconProfile" />
                     <h4>Artem Bychkov</h4>
@@ -45,13 +45,23 @@ const Home = () => {
                   </div>
                 </Row>
                 <Row>
-                    <input className={styles.searchInput} placeholder="Search" type="text" />
+                  <input
+                    className={styles.searchInput}
+                    placeholder="Search"
+                    type="text"
+                  />
                 </Row>
                 <Row>
-                    <Chats/> 
+                  <Chats />
+                  <Chats />
+                  <Chats />
+                  <Chats />
+                  <Chats />
                 </Row>
-              </Col >
-              <Col className="m-0 p-0"><Chat/></Col>
+              </Col>
+              <Col className="m-0 p-0">
+                <Chat />
+              </Col>
             </Row>
           </Col>
         </Row>
