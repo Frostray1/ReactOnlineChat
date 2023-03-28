@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -6,8 +6,13 @@ import styles from "./Auth.module.scss";
 import { Button, Form } from "react-bootstrap";
 // import mySvg from "../../image/svgexport-66.svg";
 import { BsChatDots } from "react-icons/bs";
+import { Link } from "react-router-dom";
+
+
 
 const Auth = () => {
+  
+
   return (
     <Container className={styles.container}>
       <Row className={styles.authWindow}>
@@ -18,7 +23,7 @@ const Auth = () => {
               <h3>WiseConnect</h3>
             </div>
           </Row>
-          <Form className={styles.formAuth}>
+          <Form className={styles.formAuth} >
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control type="email" placeholder="Enter email" />
@@ -34,9 +39,11 @@ const Auth = () => {
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button  variant="primary" type="submit">
               Log in
             </Button>
+           
+            <Link to="/register"> register</Link>
           </Form>
         </Row>
       </Row>

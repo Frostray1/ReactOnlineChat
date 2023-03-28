@@ -1,6 +1,7 @@
 .OutMessage{
     margin-top: 2em;
     display: flex;
+    // margin-left: auto;
 
     color:white;
     img{
@@ -8,16 +9,18 @@
         width: 40px;
         object-fit: cover;
         border-radius: 25%;
+  
     }
     .textMessage{
-        
-      
+       
+        margin-left: auto;
         font-size: 16px;
         margin-right: 0.5em;
         
        
         
         p{
+            
             border-radius:10px;
             background:rgb(77,56,162);
             // border:1px solid rgb(77,56,162);
