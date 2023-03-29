@@ -63,10 +63,7 @@ const Home = () => {
                 </Row>
                 <Row>
                   <Chats />
-                  <Chats />
-                  <Chats />
-                  <Chats />
-                  <Chats />
+                  
                 </Row>
               </Col>
               <Col className="m-0 p-0">
