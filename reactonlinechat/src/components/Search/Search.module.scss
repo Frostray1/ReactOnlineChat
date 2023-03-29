@@ -1,0 +1,45 @@
+.search{
+width: 100%;
+padding: 0;
+}
+
+.searchInput{
+    width: 100%;
+    background:transparent;
+    border: 1px solid rgb(43, 32, 57);
+    color:white;
+    padding: 0.3em;
+
+}
+.userChat{
+    // border-bottom:1px solid rgb(43, 32, 57);
+    border-bottom: 1px solid white;
+}
+
+.searchUser {
+    margin-top: 1em;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.5em 0.5em;
+    h4 {
+      font-size: 16px;
+      margin-left: 1em;
+    }
+    p{
+      font-size: 13px;
+      margin-left: 1rem;
+      color:rgb(78,72,97);
+      margin-bottom: 0;
+    }
+    img {
+      height: 50px;
+      width: 50px;
+      object-fit: cover;
+      border-radius: 25%;
+    }
+    &:hover{
+      background: linear-gradient(45deg,rgb(36, 33, 60) 15% , rgb(30, 27, 49) 40%, rgb(53, 44, 83));
+      border-radius:10px;
+    }
+  }

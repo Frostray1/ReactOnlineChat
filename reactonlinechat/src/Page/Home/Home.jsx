@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { BsChatDots } from "react-icons/bs";
 import styles from "./Home.module.scss";
@@ -7,7 +7,21 @@ import { BiCube } from "react-icons/bi";
 import { FiSettings } from "react-icons/fi";
 import Chats from "../../components/Chats/Chats";
 import Chat from "../../components/Chat/Chat";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
+import { AuthContext } from "../../context/AuthContext";
+import Search from "../../components/Search/Search";
+
+
+
 const Home = () => {
+  const {currentUser} = useContext(AuthContext)
+
+  console.log("-----home",currentUser)
+
+
+
+
   return (
     <Container className={styles.container}>
       <div className={styles.appWindow}>
@@ -40,16 +54,12 @@ const Home = () => {
                 <Row>
                   <div className={styles.profile}>
                     <img src="/image/maxresdefault.jpeg" alt="iconProfile" />
-                    <h4>Artem Bychkov</h4>
-                    <Button>Logout</Button>
+                    <h4>{currentUser.displayName? currentUser.displayName : currentUser.email}</h4>
+                    <Button onClick={()=>signOut(auth)}>Logout</Button>
                   </div>
                 </Row>
-                <Row>
-                  <input
-                    className={styles.searchInput}
-                    placeholder="Search"
-                    type="text"
-                  />
+                <Row >
+                 <Search/>
                 </Row>
                 <Row>
                   <Chats />

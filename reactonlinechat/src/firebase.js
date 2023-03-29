@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyBQdMH5YAD1tvB3_4-puFZz9RhqvKyUnao",
   authDomain: "reactrealtimechat-89423.firebaseapp.com",
@@ -16,3 +17,4 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 export const auth = getAuth()
+export const db = getFirestore()

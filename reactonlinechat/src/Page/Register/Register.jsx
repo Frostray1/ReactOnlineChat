@@ -6,32 +6,41 @@ import styles from "./Register.module.scss";
 import { Button, Form } from "react-bootstrap";
 // import mySvg from "../../image/svgexport-66.svg";
 import { BsChatDots } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
+import { auth, db } from "../../firebase";
+import { doc, setDoc, updateDoc } from "firebase/firestore";
+
 const Register = () => {
   const [err, setErr] = useState(false);
-  const handleSubmut = async (e) => {
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // console.log(e.target[2].value);
-    const email = e.target[0].value;
-    const password = e.target[1].value;
-
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user);
-        // ...
-      })
-      .catch((error) => {
-        setErr(true)
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
+    const displayName = e.target[0].value;
+    const email = e.target[1].value;
+    const password = e.target[2].value;
+    console.log(displayName);
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      await setDoc(doc(db, "users", res.user.uid), {
+        displayName,
+        email,
+        uid: res.user.uid,
       });
-  };
+      // const washingtonRef = doc(db, "users", res.user.uid);
 
+      // // Set the "capital" field of the city 'DC'
+      // await updateDoc(washingtonRef, {
+      //   displayName,
+      // });
+
+      await setDoc(doc(db, "userChats", res.user.uid), {});
+      navigate("/");
+    } catch {
+      setErr(true);
+    }
+  };
 
   return (
     <Container className={styles.container}>
@@ -43,7 +52,11 @@ const Register = () => {
               <h3>WiseConnect</h3>
             </div>
           </Row>
-          <Form className={styles.formAuth} onSubmit={handleSubmut}>
+          <Form className={styles.formAuth} onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Name</Form.Label>
+              <Form.Control type="text" placeholder="Name" />
+            </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control type="email" placeholder="Enter email" />
@@ -59,7 +72,7 @@ const Register = () => {
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
-            <Button  variant="primary" type="submit">
+            <Button variant="primary" type="submit">
               Register
             </Button>
             {err && <span>Something went wrong</span>}
