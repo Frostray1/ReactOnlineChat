@@ -1,6 +1,7 @@
 import { doc, onSnapshot } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { ChatContext } from "../../context/ChatContext";
 import { db } from "../../firebase";
 import styles from "./Chats.module.scss";
 
@@ -32,14 +33,14 @@ const Chats = () => {
 
   return (
     <>
-    {Object.entries(chats)?.map(chat=>(
+    {Object.entries(chats)?.sort((a,b)=>b[1].date-a[1].date).map((chat)=>(
 
    
-     <div className={styles.userMessage} key={chat[0]}>
+     <div className={styles.userMessage} key={chat[0]} onClick={()=>handleSelect(chat[1].userInfo)}>
       <img className={styles.avatarMessage} src={chat[1].userInfo.photoURL} alt="" />
       <div>
         <h4>{chat[1].userInfo.displayName}</h4>
-        <p>{chat[1].userInfo.lastMessage?.text}</p>
+        <p>{chat[1].lastMessage?.text}</p>
       </div>
     </div>
     ))}
