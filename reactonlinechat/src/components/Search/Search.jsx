@@ -42,7 +42,7 @@ const Search = () => {
     const docSnap = await getDoc(docRef);
     const currentUserName = docSnap.data();
 
-    console.log(currentUserName.displayName);
+    // console.log(currentUserName.displayName);
 
     const combinedId =
       currentUser.uid > user.uid

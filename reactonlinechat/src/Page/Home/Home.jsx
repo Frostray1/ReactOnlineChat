@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { BsChatDots } from "react-icons/bs";
 import styles from "./Home.module.scss";
@@ -11,14 +11,32 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 import { AuthContext } from "../../context/AuthContext";
 import Search from "../../components/Search/Search";
+import { Link } from "react-router-dom";
+import readDocument from "../../hooks/read-data-user";
 
 
 
 const Home = () => {
+  const [displayName,setDisplayName] = useState('')
+  const [avatar,setAvatar] = useState('')
   const {currentUser} = useContext(AuthContext)
+  
 
-  console.log("-----home",currentUser)
-
+  useEffect(() => {
+    readDocument(currentUser.uid)
+      .then((result) => {
+        if (result) {
+    
+          // console.log(result)
+          setDisplayName(result.displayName)
+          setAvatar(result.photoURL)
+          
+        }
+      })
+      .catch((err) => {
+        console.warn("Something went wrong!", err);
+      });
+  }, [currentUser.uid]);
 
 
 
@@ -35,10 +53,10 @@ const Home = () => {
                 <BiCube className={styles.menuIcon} />
               </Row>
               <Row>
-                <BsChatDots className={styles.menuIcon} />
+              <Link to='/'> <BsChatDots className={styles.menuIcon} /></Link>
               </Row>
               <Row>
-                <FiSettings className={styles.menuIcon} />
+               <Link to='/settings'> <FiSettings className={styles.menuIcon} /></Link>
               </Row>
             </div>
           </Col>
@@ -53,8 +71,8 @@ const Home = () => {
               <Col xs={4} className={styles.membersList}>
                 <Row>
                   <div className={styles.profile}>
-                    <img src="/image/maxresdefault.jpeg" alt="iconProfile" />
-                    <h4>{currentUser.displayName? currentUser.displayName : currentUser.email}</h4>
+                    <img src={avatar} alt="iconProfile" />
+                    <h4>{displayName? displayName : currentUser.email}</h4>
                     <Button onClick={()=>signOut(auth)}>Logout</Button>
                   </div>
                 </Row>

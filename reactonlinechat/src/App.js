@@ -6,10 +6,11 @@ import Home from "./Page/Home/Home";
 import Register from "./Page/Register/Register";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+import Setting from "./Page/Settings/Setting";
 function App() {
   const { currentUser } = useContext(AuthContext);
 
-  console.log(currentUser);
+  // console.log(currentUser);
 
   const ProtectedRoute = ({ children }) => {
     if (!currentUser) {
@@ -32,6 +33,7 @@ function App() {
           />
           <Route path="/register" element={<Register />} />
           <Route path="/" element={ <ProtectedRoute><Home /></ProtectedRoute> }/>
+          <Route path="/settings" element={ <ProtectedRoute><Setting /></ProtectedRoute> }/>
           {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
       </BrowserRouter>
