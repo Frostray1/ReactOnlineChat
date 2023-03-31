@@ -13,6 +13,7 @@ import { AuthContext } from "../../context/AuthContext";
 import Search from "../../components/Search/Search";
 import { Link } from "react-router-dom";
 import readDocument from "../../hooks/read-data-user";
+import { CgProfile } from "react-icons/cg";
 
 
 
@@ -70,9 +71,11 @@ const Home = () => {
             <Row className={styles.chat}>
               <Col xs={4} className={styles.membersList}>
                 <Row>
+                  
                   <div className={styles.profile}>
-                    <img src={avatar} alt="iconProfile" />
-                    <h4>{displayName? displayName : currentUser.email}</h4>
+                    {avatar? <img src={avatar} alt="iconProfile"/>  : <CgProfile/> }
+                   
+                    <h4>{displayName? displayName : null}</h4>
                     <Button onClick={()=>signOut(auth)}>Logout</Button>
                   </div>
                 </Row>

@@ -15,6 +15,8 @@ function writeUserData(uid, valuesInput) {
     }
     // console.log("-----",usersData)
     setDoc(db, usersData, { merge: true });
+
+    
   
   }
 

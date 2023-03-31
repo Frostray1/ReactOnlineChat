@@ -29,6 +29,7 @@ const Search = () => {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         setUser(doc.data());
+        // console.log()
       });
     } catch (err) {
       setErr(true);
@@ -60,14 +61,16 @@ const Search = () => {
           [combinedId + ".userInfo"]: {
             uid: user.uid,
             displayName: user.displayName,
+            photoURL:user.photoURL,
           },
           [combinedId + ".date"]: serverTimestamp(),
         });
-
+        // console.log(user.photoURL)
         await updateDoc(doc(db, "userChats", user.uid), {
           [combinedId + ".userInfo"]: {
             uid: currentUser.uid,
             displayName: currentUserName.displayName,
+            photoURL:currentUserName.photoURL,
           },
           [combinedId + ".date"]: serverTimestamp(),
         });
@@ -97,8 +100,9 @@ const Search = () => {
       {err && <span>User not found</span>}
       {user && (
         <div className={styles.userChat}>
+          
           <div className={styles.searchUser} onClick={handleSelect}>
-            <img src="/image/avatar.jpeg" alt="" />
+            <img src={user.photoURL} alt="" />
             <div>
               <h4>{user.displayName}</h4>
             </div>

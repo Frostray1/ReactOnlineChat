@@ -1,12 +1,31 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext";
+import readDocument from "../../hooks/read-data-user";
 import styles from "./Message.module.scss";
 
 const Message = ({ message }) => {
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
   const containerRef = useRef();
+
+
+  const [avatar,setAvatar] = useState('')
+  
+  
+
+  useEffect(() => {
+    readDocument(currentUser.uid)
+      .then((result) => {
+        if (result) {
+          setAvatar(result.photoURL)
+          
+        }
+      })
+      .catch((err) => {
+        console.warn("Something went wrong!", err);
+      });
+  }, [currentUser.uid]);
 
   useEffect(() => {
     containerRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -20,10 +39,10 @@ const Message = ({ message }) => {
         <img
           src={
             message.senderId === currentUser.uid
-              ? currentUser.photoURL
+              ? avatar
               : data.user.photoURL
           }
-          alt="avatar"
+          alt=""
         />
         <div className={styles.textMessage}>
           <p>{message.text}</p>

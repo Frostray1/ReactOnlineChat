@@ -7,11 +7,12 @@ import { FiSettings } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 import styles from "./Setting.module.scss";
-import { Button, Form, Input, message, Upload } from "antd";
+import { Button, Form, Input, Upload } from "antd";
 import UploadAvatar from "./UploadAvatar";
 import { AuthContext } from "../../context/AuthContext";
 import readDocument from "../../hooks/read-data-user";
 import writeUserData from "../../hooks/WriteUserData";
+import { message} from 'antd';
 
 const formItemLayout = {
   labelCol: {
@@ -70,6 +71,41 @@ const Setting = () => {
   const onFinish = (values) => {
     // console.log("Received values of form: ", values);
   };
+ 
+  
+  const [messageApi, contextHolder] = message.useMessage();
+  const key = 'updatable';
+  const openMessage = () => {
+    messageApi.open({
+      key,
+      type: 'loading',
+      content: 'Loading...',
+    });
+    setTimeout(() => {
+      messageApi.open({
+        key,
+        type: 'success',
+        content: 'Loaded!',
+        duration: 2,
+      });
+    }, 1000);
+  };
+ 
+
+  const clickButtonAndWriteDataUser = async () => {
+    try {
+      await writeUserData(currentUser.uid, form.getFieldsValue());
+      openMessage();
+    } catch (error) {
+      messageApi.error({
+        key,
+        content: `Ошибка: ${error.message}`,
+        duration: 2,
+      });
+    }
+  };
+  
+  
 
   return (
     <Container className={styles.container}>
@@ -128,7 +164,7 @@ const Setting = () => {
 
                 <Form.Item {...tailFormItemLayout}>
                   <Button
-                      onClick={() => writeUserData(currentUser.uid, form.getFieldsValue())}
+                      onClick={clickButtonAndWriteDataUser}
                     type="primary"
                     htmlType="submit"
                   >

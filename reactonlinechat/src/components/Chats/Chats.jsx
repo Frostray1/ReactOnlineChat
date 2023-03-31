@@ -33,10 +33,12 @@ const Chats = () => {
 
   return (
     <>
+    
     {Object.entries(chats)?.sort((a,b)=>b[1].date-a[1].date).map((chat)=>(
 
    
      <div className={styles.userMessage} key={chat[0]} onClick={()=>handleSelect(chat[1].userInfo)}>
+      {/* {console.log(chat)} */}
       <img className={styles.avatarMessage} src={chat[1].userInfo.photoURL} alt="" />
       <div>
         <h4>{chat[1].userInfo.displayName}</h4>
