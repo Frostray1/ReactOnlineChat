@@ -163,8 +163,9 @@ const Setting = () => {
                 </Form.Item> */}
 
                 <Form.Item {...tailFormItemLayout}>
+                  {contextHolder}
                   <Button
-                      onClick={clickButtonAndWriteDataUser}
+                    onClick={clickButtonAndWriteDataUser}
                     type="primary"
                     htmlType="submit"
                   >
