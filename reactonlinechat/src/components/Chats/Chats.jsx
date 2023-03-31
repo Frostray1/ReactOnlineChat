@@ -4,6 +4,8 @@ import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext";
 import { db } from "../../firebase";
 import styles from "./Chats.module.scss";
+import { TfiThemifyFavicon } from "react-icons/tfi";
+
 
 const Chats = () => {
 
@@ -39,7 +41,8 @@ const Chats = () => {
    
      <div className={styles.userMessage} key={chat[0]} onClick={()=>handleSelect(chat[1].userInfo)}>
       {/* {console.log(chat)} */}
-      <img className={styles.avatarMessage} src={chat[1].userInfo.photoURL} alt="" />
+      {chat[1].userInfo.photoURL ? <img className={styles.avatarMessage} src={chat[1].userInfo.photoURL } alt="" /> : <TfiThemifyFavicon/> }
+      {/* <img className={styles.avatarMessage} src={chat[1].userInfo.photoURL } alt="" /> */}
       <div>
         <h4>{chat[1].userInfo.displayName}</h4>
         <p>{chat[1].lastMessage?.text}</p>
