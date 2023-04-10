@@ -9,17 +9,13 @@ const Message = ({ message }) => {
   const { data } = useContext(ChatContext);
   const containerRef = useRef();
 
-
-  const [avatar,setAvatar] = useState('')
-  
-  
+  const [avatar, setAvatar] = useState("");
 
   useEffect(() => {
     readDocument(currentUser.uid)
       .then((result) => {
         if (result) {
-          setAvatar(result.photoURL)
-          
+          setAvatar(result.photoURL);
         }
       })
       .catch((err) => {
@@ -34,13 +30,15 @@ const Message = ({ message }) => {
   return (
     <div ref={containerRef}>
       <div
-        className={`${message.senderId === currentUser.uid ? styles.outMessage : styles.inMessage}`}
+        className={`${
+          message.senderId === currentUser.uid
+            ? styles.outMessage
+            : styles.inMessage
+        }`}
       >
         <img
           src={
-            message.senderId === currentUser.uid
-              ? avatar
-              : data.user.photoURL
+            message.senderId === currentUser.uid ? avatar : data.user.photoURL
           }
           alt=""
         />

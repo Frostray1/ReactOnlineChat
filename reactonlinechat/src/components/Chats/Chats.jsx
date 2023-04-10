@@ -6,9 +6,7 @@ import { db } from "../../firebase";
 import styles from "./Chats.module.scss";
 import { TfiThemifyFavicon } from "react-icons/tfi";
 
-
 const Chats = () => {
-
   const [chats, setChats] = useState([]);
 
   const { currentUser } = useContext(AuthContext);
@@ -32,25 +30,32 @@ const Chats = () => {
     dispatch({ type: "CHANGE_USER", payload: u });
   };
 
-
   return (
     <>
-    
-    {Object.entries(chats)?.sort((a,b)=>b[1].date-a[1].date).map((chat)=>(
-
-   
-     <div className={styles.userMessage} key={chat[0]} onClick={()=>handleSelect(chat[1].userInfo)}>
-      {/* {console.log(chat)} */}
-      {chat[1].userInfo.photoURL ? <img className={styles.avatarMessage} src={chat[1].userInfo.photoURL } alt="" /> : <TfiThemifyFavicon/> }
-      {/* <img className={styles.avatarMessage} src={chat[1].userInfo.photoURL } alt="" /> */}
-      <div>
-        <h4>{chat[1].userInfo.displayName}</h4>
-        <p>{chat[1].lastMessage?.text}</p>
-      </div>
-    </div>
-    ))}
+      {Object.entries(chats)
+        ?.sort((a, b) => b[1].date - a[1].date)
+        .map((chat) => (
+          <div
+            className={styles.userMessage}
+            key={chat[0]}
+            onClick={() => handleSelect(chat[1].userInfo)}
+          >
+            {chat[1].userInfo.photoURL ? (
+              <img
+                className={styles.avatarMessage}
+                src={chat[1].userInfo.photoURL}
+                alt=""
+              />
+            ) : (
+              <TfiThemifyFavicon />
+            )}
+            <div>
+              <h4>{chat[1].userInfo.displayName}</h4>
+              <p>{chat[1].lastMessage?.text}</p>
+            </div>
+          </div>
+        ))}
     </>
-   
   );
 };
 

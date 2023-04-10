@@ -6,10 +6,9 @@ import { BsThreeDots } from "react-icons/bs";
 import Messages from "../Messages/Messages";
 import Input from "../Input/Input";
 import { ChatContext } from "../../context/ChatContext";
-import InMessage from "../Message/Message";
-const Chat = () => {
 
-  const {data} = useContext(ChatContext)
+const Chat = () => {
+  const { data } = useContext(ChatContext);
 
   return (
     <div className={styles.chat}>
@@ -23,17 +22,13 @@ const Chat = () => {
           <BsThreeDots />
         </Col>
       </Row>
-      {/* <Row className={styles.messageWindow}> */}
-        <Row className={styles.messagesChat}>
-          <Messages />
-          
+      <Row className={styles.messagesChat}>
+        <Messages />
+      </Row>
+      <Row className={styles.inputChat}>
+        <Input />
+      </Row>
 
-        </Row>
-        <Row  className={styles.inputChat}>
-          <Input />
-        </Row>
-       
-        
       {/* </Row> */}
     </div>
   );

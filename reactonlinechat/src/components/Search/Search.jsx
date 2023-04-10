@@ -29,7 +29,6 @@ const Search = () => {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         setUser(doc.data());
-        // console.log()
       });
     } catch (err) {
       setErr(true);
@@ -38,13 +37,9 @@ const Search = () => {
   };
 
   const handleSelect = async () => {
-    //check whether the group(chats in firestore) exists, if not create
     const docRef = doc(db, "users", currentUser.uid);
     const docSnap = await getDoc(docRef);
     const currentUserName = docSnap.data();
-
-    // console.log(currentUserName.displayName);
-
     const combinedId =
       currentUser.uid > user.uid
         ? currentUser.uid + user.uid
@@ -53,30 +48,26 @@ const Search = () => {
       const res = await getDoc(doc(db, "chats", combinedId));
 
       if (!res.exists()) {
-      
         await setDoc(doc(db, "chats", combinedId), { messages: [] });
-
 
         await updateDoc(doc(db, "userChats", currentUser.uid), {
           [combinedId + ".userInfo"]: {
             uid: user.uid,
             displayName: user.displayName,
-            photoURL:user.photoURL,
+            photoURL: user.photoURL,
           },
           [combinedId + ".date"]: serverTimestamp(),
         });
-        // console.log(user.photoURL)
         await updateDoc(doc(db, "userChats", user.uid), {
           [combinedId + ".userInfo"]: {
             uid: currentUser.uid,
             displayName: currentUserName.displayName,
-            photoURL:currentUserName.photoURL,
+            photoURL: currentUserName.photoURL,
           },
           [combinedId + ".date"]: serverTimestamp(),
         });
       }
     } catch (err) {}
-
     setUser(null);
     setUsername("");
   };
@@ -100,7 +91,6 @@ const Search = () => {
       {err && <span>User not found</span>}
       {user && (
         <div className={styles.userChat}>
-          
           <div className={styles.searchUser} onClick={handleSelect}>
             <img src={user.photoURL} alt="" />
             <div>

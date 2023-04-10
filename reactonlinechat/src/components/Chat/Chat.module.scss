@@ -1,9 +1,7 @@
 .chat {
   height: 100%;
   width: 100%;
-    // background:green;
   position: relative;
-
 }
 
 .headerChat {
@@ -12,7 +10,6 @@
   width: 100%;
   height: 4em;
   border-bottom: 1px solid rgb(43, 32, 57);
-
   h5 {
     padding: 1em 0em 0em 1em;
   }
@@ -21,7 +18,6 @@
 .chatIcons {
   font-size: 24px;
   text-align: right;
-
   svg {
     margin: 1rem 0.7rem 0rem 0rem;
     cursor: pointer;
@@ -29,13 +25,11 @@
 }
 
 .messagesChat {
-
   max-height: calc(62vh - 62px - 4em);
   margin: 0;
   overflow: scroll;
 }
 .inputChat {
-
   margin: 0;
   height: 3em;
 
@@ -43,5 +37,4 @@
   width: 100%;
   bottom: 0;
   margin-bottom: 0.5em;
-
 }
