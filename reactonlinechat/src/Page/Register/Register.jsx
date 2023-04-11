@@ -16,7 +16,7 @@ const Register = () => {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(e.target[2].value);
+
     const displayName = e.target[0].value;
     const email = e.target[1].value;
     const password = e.target[2].value;
@@ -28,12 +28,6 @@ const Register = () => {
         email,
         uid: res.user.uid,
       });
-      // const washingtonRef = doc(db, "users", res.user.uid);
-
-      // // Set the "capital" field of the city 'DC'
-      // await updateDoc(washingtonRef, {
-      //   displayName,
-      // });
 
       await setDoc(doc(db, "userChats", res.user.uid), {});
       navigate("/");

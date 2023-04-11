@@ -17,7 +17,7 @@ const Auth = () => {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(e.target[2].value);
+
     const email = e.target[0].value;
     const password = e.target[1].value;
 

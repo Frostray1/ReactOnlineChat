@@ -15,31 +15,23 @@ import { Link } from "react-router-dom";
 import readDocument from "../../hooks/read-data-user";
 import { CgProfile } from "react-icons/cg";
 
-
-
 const Home = () => {
-  const [displayName,setDisplayName] = useState('')
-  const [avatar,setAvatar] = useState('')
-  const {currentUser} = useContext(AuthContext)
-  
+  const [displayName, setDisplayName] = useState("");
+  const [avatar, setAvatar] = useState("");
+  const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     readDocument(currentUser.uid)
       .then((result) => {
         if (result) {
-    
-          // console.log(result)
-          setDisplayName(result.displayName)
-          setAvatar(result.photoURL)
-          
+          setDisplayName(result.displayName);
+          setAvatar(result.photoURL);
         }
       })
       .catch((err) => {
         console.warn("Something went wrong!", err);
       });
   }, [currentUser.uid]);
-
-
 
   return (
     <Container className={styles.container}>
@@ -54,10 +46,16 @@ const Home = () => {
                 <BiCube className={styles.menuIcon} />
               </Row>
               <Row>
-              <Link to='/'> <BsChatDots className={styles.menuIcon} /></Link>
+                <Link to="/">
+                  {" "}
+                  <BsChatDots className={styles.menuIcon} />
+                </Link>
               </Row>
               <Row>
-               <Link to='/settings'> <FiSettings className={styles.menuIcon} /></Link>
+                <Link to="/settings">
+                  {" "}
+                  <FiSettings className={styles.menuIcon} />
+                </Link>
               </Row>
             </div>
           </Col>
@@ -71,20 +69,22 @@ const Home = () => {
             <Row className={styles.chat}>
               <Col xs={4} className={styles.membersList}>
                 <Row>
-                  
                   <div className={styles.profile}>
-                    {avatar? <img src={avatar} alt="iconProfile"/>  : <CgProfile/> }
-                   
-                    <h4>{displayName? displayName : null}</h4>
-                    <Button onClick={()=>signOut(auth)}>Logout</Button>
+                    {avatar ? (
+                      <img src={avatar} alt="iconProfile" />
+                    ) : (
+                      <CgProfile />
+                    )}
+
+                    <h4>{displayName ? displayName : null}</h4>
+                    <Button onClick={() => signOut(auth)}>Logout</Button>
                   </div>
                 </Row>
-                <Row >
-                 <Search/>
+                <Row>
+                  <Search />
                 </Row>
                 <Row>
                   <Chats />
-                  
                 </Row>
               </Col>
               <Col className="m-0 p-0">
