@@ -12,7 +12,7 @@ import UploadAvatar from "./UploadAvatar";
 import { AuthContext } from "../../context/AuthContext";
 import readDocument from "../../hooks/read-data-user";
 import writeUserData from "../../hooks/WriteUserData";
-import { message} from 'antd';
+import { message } from "antd";
 
 const formItemLayout = {
   labelCol: {
@@ -45,22 +45,17 @@ const tailFormItemLayout = {
   },
 };
 
-
-
 const Setting = () => {
-  
   const { currentUser } = useContext(AuthContext);
 
- 
   const [form] = Form.useForm();
 
   useEffect(() => {
     readDocument(currentUser.uid, form)
       .then((result) => {
         if (result) {
-          // console.log(result);
-          const { displayName} = result;
-          form.setFieldsValue({ displayName});
+          const { displayName } = result;
+          form.setFieldsValue({ displayName });
         }
       })
       .catch((err) => {
@@ -68,29 +63,25 @@ const Setting = () => {
       });
   }, [currentUser.uid, form]);
 
-  const onFinish = (values) => {
-    // console.log("Received values of form: ", values);
-  };
- 
-  
+  const onFinish = (values) => {};
+
   const [messageApi, contextHolder] = message.useMessage();
-  const key = 'updatable';
+  const key = "updatable";
   const openMessage = () => {
     messageApi.open({
       key,
-      type: 'loading',
-      content: 'Loading...',
+      type: "loading",
+      content: "Loading...",
     });
     setTimeout(() => {
       messageApi.open({
         key,
-        type: 'success',
-        content: 'Loaded!',
+        type: "success",
+        content: "Loaded!",
         duration: 2,
       });
     }, 1000);
   };
- 
 
   const clickButtonAndWriteDataUser = async () => {
     try {
@@ -104,8 +95,6 @@ const Setting = () => {
       });
     }
   };
-  
-  
 
   return (
     <Container className={styles.container}>
@@ -145,23 +134,20 @@ const Setting = () => {
                 onFinish={onFinish}
                 scrollToFirstError
               >
-                <Form.Item label={<label style={{ color: "white" }}>Аватар</label>}valuePropName="fileList" >
+                <Form.Item
+                  label={<label style={{ color: "white" }}>Аватар</label>}
+                  valuePropName="fileList"
+                >
                   <UploadAvatar />
                 </Form.Item>
 
                 <Form.Item
-                
                   name="displayName"
                   label={<label style={{ color: "white" }}>Ник</label>}
                   tooltip="Как другие будут видеть тебя?"
                 >
                   <Input />
                 </Form.Item>
-
-                {/* <Form.Item name="aboutUser" label="О себе">
-                  <Input.TextArea showCount maxLength={100} />
-                </Form.Item> */}
-
                 <Form.Item {...tailFormItemLayout}>
                   {contextHolder}
                   <Button

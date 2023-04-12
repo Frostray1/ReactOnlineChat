@@ -7,7 +7,7 @@ import Register from "./Page/Register/Register";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Setting from "./Page/Settings/Setting";
-import Test from "./Page/Settings/test";
+
 function App() {
   const { currentUser } = useContext(AuthContext);
 
@@ -17,26 +17,32 @@ function App() {
     if (!currentUser) {
       return <Navigate to="/auth" />;
     }
-    return children
+    return children;
   };
 
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/register" element={<Register />} />
+
           <Route
-            path="/auth"
+            path="/"
             element={
-             
-                <Auth />
-              
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
             }
           />
-          <Route path="/register" element={<Register />} />
-          <Route path="/test" element={<Test />} />
-          
-          <Route path="/" element={ <ProtectedRoute><Home /></ProtectedRoute> }/>
-          <Route path="/settings" element={ <ProtectedRoute><Setting /></ProtectedRoute> }/>
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute>
+                <Setting />
+              </ProtectedRoute>
+            }
+          />
           {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
       </BrowserRouter>
