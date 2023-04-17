@@ -70,8 +70,7 @@ const Register = () => {
               Register
             </Button>
             {err && <span>Something went wrong</span>}
-            <Link to="/auth"> Log in</Link>
-            <Link to="/"> Home</Link>
+            <h6 className={styles.loginButton}>Have an account? Then <Link to="/auth"> log in</Link></h6>
           </Form>
         </Row>
       </Row>

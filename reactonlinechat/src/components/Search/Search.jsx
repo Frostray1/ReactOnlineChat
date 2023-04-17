@@ -13,6 +13,11 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebase";
 import { AuthContext } from "../../context/AuthContext";
+import { TfiThemifyFavicon } from "react-icons/tfi";
+
+
+
+
 const Search = () => {
   const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
@@ -20,16 +25,19 @@ const Search = () => {
   const { currentUser } = useContext(AuthContext);
 
   const handleSearch = async () => {
+    
     const q = query(
       collection(db, "users"),
       where("displayName", "==", username)
     );
 
     try {
+    
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         setUser(doc.data());
       });
+  
     } catch (err) {
       setErr(true);
       console.log(err);
@@ -54,7 +62,7 @@ const Search = () => {
           [combinedId + ".userInfo"]: {
             uid: user.uid,
             displayName: user.displayName,
-            photoURL: user.photoURL,
+            photoURL: user.photoURL ? user.photoURL : '',
           },
           [combinedId + ".date"]: serverTimestamp(),
         });
@@ -62,7 +70,7 @@ const Search = () => {
           [combinedId + ".userInfo"]: {
             uid: currentUser.uid,
             displayName: currentUserName.displayName,
-            photoURL: currentUserName.photoURL,
+            photoURL: currentUserName.photoURL ? currentUserName.photoURL : '' ,
           },
           [combinedId + ".date"]: serverTimestamp(),
         });
@@ -87,12 +95,18 @@ const Search = () => {
           onKeyDown={handleKey}
           value={username}
         />
+        
       </div>
       {err && <span>User not found</span>}
       {user && (
         <div className={styles.userChat}>
           <div className={styles.searchUser} onClick={handleSelect}>
-            <img src={user.photoURL} alt="" />
+          {user.photoURL ? (
+              <img src={user.photoURL}  alt=""/>
+            ) : (
+              <TfiThemifyFavicon />
+            )}
+            {/* <img src={user.photoURL ? user.photoURL :  <TfiThemifyFavicon /> } /> */}
             <div>
               <h4>{user.displayName}</h4>
             </div>

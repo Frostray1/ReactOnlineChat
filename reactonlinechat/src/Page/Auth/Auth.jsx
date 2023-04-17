@@ -15,6 +15,7 @@ import { auth } from "../../firebase";
 const Auth = () => {
   const [err, setErr] = useState(false);
   const navigate = useNavigate();
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -22,8 +23,8 @@ const Auth = () => {
     const password = e.target[1].value;
 
     try {
-      signInWithEmailAndPassword(auth, email, password)
-      navigate('/')
+      await signInWithEmailAndPassword(auth, email, password)
+       navigate('/')
     } catch {
       setErr(true);
     }
@@ -58,9 +59,10 @@ const Auth = () => {
             <Button variant="primary" type="submit">
               Log in
             </Button>
-
-            <Link to="/register"> register</Link>
+            <h6 className={styles.registerButton}>No account? Then  <Link to="/register"> register</Link></h6>
+            
           </Form>
+          
         </Row>
       </Row>
     </Container>

@@ -16,15 +16,32 @@ const Chats = () => {
     const getChats = () => {
       const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
         setChats(doc.data());
+        
       });
 
       return () => {
         unsub();
       };
     };
+    
+    const updateChats = () => {
+      const unsub1 = onSnapshot(doc(db, "users", currentUser.uid), (doc) => {
+        // console.log(doc.data())
+      });
 
-    currentUser.uid && getChats();
+      
+    };
+
+
+
+    currentUser.uid && getChats()&& updateChats();
   }, [currentUser.uid]);
+ 
+
+
+
+
+
 
   const handleSelect = (u) => {
     dispatch({ type: "CHANGE_USER", payload: u });
