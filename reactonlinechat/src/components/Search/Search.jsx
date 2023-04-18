@@ -62,7 +62,7 @@ const Search = () => {
           [combinedId + ".userInfo"]: {
             uid: user.uid,
             displayName: user.displayName,
-            photoURL: user.photoURL ? user.photoURL : '',
+            photoURL: user.photoURL ? user.photoURL : 'https://meetupss.com/upload/photos/2020/04/bwbv7D1LbEDrvyeoCikW_18_e712369129f8e2b3c8040dd2eead6f77_avatar_full.png',
           },
           [combinedId + ".date"]: serverTimestamp(),
         });
@@ -70,7 +70,7 @@ const Search = () => {
           [combinedId + ".userInfo"]: {
             uid: currentUser.uid,
             displayName: currentUserName.displayName,
-            photoURL: currentUserName.photoURL ? currentUserName.photoURL : '' ,
+            photoURL: currentUserName.photoURL ? currentUserName.photoURL : 'https://meetupss.com/upload/photos/2020/04/bwbv7D1LbEDrvyeoCikW_18_e712369129f8e2b3c8040dd2eead6f77_avatar_full.png' ,
           },
           [combinedId + ".date"]: serverTimestamp(),
         });
@@ -106,7 +106,6 @@ const Search = () => {
             ) : (
               <TfiThemifyFavicon />
             )}
-            {/* <img src={user.photoURL ? user.photoURL :  <TfiThemifyFavicon /> } /> */}
             <div>
               <h4>{user.displayName}</h4>
             </div>

@@ -13,6 +13,7 @@ import { AuthContext } from "../../context/AuthContext";
 import readDocument from "../../hooks/read-data-user";
 import writeUserData from "../../hooks/WriteUserData";
 import { message } from "antd";
+import UpdateUserDataInMessage from "../../hooks/useUpdateUserDataInMessage";
 
 const formItemLayout = {
   labelCol: {
@@ -86,7 +87,9 @@ const Setting = () => {
   const clickButtonAndWriteDataUser = async () => {
     try {
       await writeUserData(currentUser.uid, form.getFieldsValue());
+     
       openMessage();
+      
     } catch (error) {
       messageApi.error({
         key,

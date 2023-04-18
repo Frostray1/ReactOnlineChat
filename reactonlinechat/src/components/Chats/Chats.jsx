@@ -5,6 +5,7 @@ import { ChatContext } from "../../context/ChatContext";
 import { db } from "../../firebase";
 import styles from "./Chats.module.scss";
 import { TfiThemifyFavicon } from "react-icons/tfi";
+import UpdateUserDataInChats from "../../hooks/useUpdateUserDataInMessage";
 
 const Chats = () => {
   const [chats, setChats] = useState([]);
@@ -18,23 +19,17 @@ const Chats = () => {
         setChats(doc.data());
         
       });
-
+      UpdateUserDataInChats(currentUser.uid)
       return () => {
         unsub();
       };
     };
     
-    const updateChats = () => {
-      const unsub1 = onSnapshot(doc(db, "users", currentUser.uid), (doc) => {
-        // console.log(doc.data())
-      });
-
-      
-    };
+   
 
 
 
-    currentUser.uid && getChats()&& updateChats();
+    currentUser.uid && getChats();
   }, [currentUser.uid]);
  
 

@@ -20,4 +20,16 @@ function writeUserData(uid, valuesInput) {
   
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
   export default writeUserData
