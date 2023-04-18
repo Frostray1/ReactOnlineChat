@@ -60,10 +60,7 @@ function UpdateUserDataInChats(uid) {
           updateDoc(docRef, updateData);
         }
 
-        // console.log(uidUsersInChats);
-        // console.log(combinedId);
-
-        // console.log(uid);
+       
       })
       .catch((error) => {
         console.log(error);
