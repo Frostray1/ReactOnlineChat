@@ -14,6 +14,7 @@ import readDocument from "../../hooks/read-data-user";
 import writeUserData from "../../hooks/WriteUserData";
 import { message } from "antd";
 import UpdateUserDataInMessage from "../../hooks/useUpdateUserDataInMessage";
+import UseDeleteAccount from "../../hooks/useDeleteAccount";
 
 const formItemLayout = {
   labelCol: {
@@ -99,6 +100,10 @@ const Setting = () => {
     }
   };
 
+  const clickDeleteAccount = () =>{
+    UseDeleteAccount(currentUser.uid)
+  }
+
   return (
     <Container className={styles.container}>
       <div className={styles.appWindow}>
@@ -106,7 +111,7 @@ const Setting = () => {
           <Col xs={1} className={styles.menu}>
             <div className={styles.menuItem}>
               <Row>
-                <AiOutlineHome className={styles.menuIcon} />
+              <Link to="/profile"><AiOutlineHome className={styles.menuIcon} /></Link>
               </Row>
               <Row>
                 <BiCube className={styles.menuIcon} />
@@ -160,10 +165,14 @@ const Setting = () => {
                   >
                     Сохранить
                   </Button>
+                  <Button onClick={clickDeleteAccount}>Удалить Аккаунт</Button>
                 </Form.Item>
+                
               </Form>
+              
             </Row>
           </Col>
+          
         </Row>
       </div>
     </Container>

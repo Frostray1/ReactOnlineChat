@@ -26,6 +26,7 @@ const Register = () => {
       await setDoc(doc(db, "users", res.user.uid), {
         displayName,
         email,
+        photoURL: 'https://meetupss.com/upload/photos/2020/04/bwbv7D1LbEDrvyeoCikW_18_e712369129f8e2b3c8040dd2eead6f77_avatar_full.png',
         uid: res.user.uid,
       });
 

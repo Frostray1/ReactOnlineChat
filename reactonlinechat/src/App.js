@@ -7,6 +7,7 @@ import Register from "./Page/Register/Register";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Setting from "./Page/Settings/Setting";
+import Profile from "./Page/Profile/Profile";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -40,6 +41,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Setting />
+              </ProtectedRoute>
+            }
+          />
+           <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
               </ProtectedRoute>
             }
           />
