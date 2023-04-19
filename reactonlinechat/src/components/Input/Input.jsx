@@ -16,6 +16,12 @@ const Input = () => {
   const {currentUser} = useContext(AuthContext)
   const {data} = useContext(ChatContext)
 
+  const handleKey = (e) => {
+    e.code === "Enter" && handleSend() ;
+  };
+
+
+
   const handleSend = async () => {
 
 
@@ -46,7 +52,7 @@ const Input = () => {
   return (
     <Row className={styles.inputWindow}>
         <Col xs={1} className={styles.addFile}> <BsPaperclip/></Col>
-        <Col ><input className={styles.inputChat} type="text" placeholder="Write the message" onChange={e=>setText(e.target.value)} value={text}/></Col>
+        <Col ><input className={styles.inputChat} type="text" placeholder="Write the message" onChange={e=>setText(e.target.value)}  onKeyDown={handleKey} value={text}/></Col>
         <Col xs={1}className={styles.sendButton}><button onClick={handleSend}><IoSendSharp/></button></Col>
     </Row>
   );
