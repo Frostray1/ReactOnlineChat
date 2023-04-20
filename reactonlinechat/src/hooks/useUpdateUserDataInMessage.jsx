@@ -60,7 +60,7 @@ function UpdateUserDataInChats(uid) {
               [fieldName]: currentDisplayName,
               [fieldPhotoUrl]: currentPhotoUrl,
             };
-            console.log(updateData);
+            // console.log(updateData);
             updateDoc(docRef, updateData);
           }
     

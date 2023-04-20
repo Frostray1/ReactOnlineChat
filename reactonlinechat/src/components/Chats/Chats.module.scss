@@ -3,17 +3,17 @@
   display: flex;
   cursor: pointer;
   padding: 0.5em 0.5em;
-  svg{
-    font-size: 40px;
-  }
+  // justify-content: space-between;
+  align-items: center;
+
   h4 {
     font-size: 16px;
     margin-left: 1em;
   }
-  p{
+  p {
     font-size: 13px;
     margin-left: 1rem;
-    color:rgb(78,72,97);
+    color: rgb(78, 72, 97);
     margin-bottom: 0;
   }
   img {
@@ -22,8 +22,44 @@
     object-fit: cover;
     border-radius: 25%;
   }
-  &:hover{
-    background: linear-gradient(45deg,rgb(36, 33, 60) 15% , rgb(30, 27, 49) 40%, rgb(53, 44, 83));
-    border-radius:10px;
+  &:hover {
+    background: linear-gradient(
+      45deg,
+      rgb(36, 33, 60) 15%,
+      rgb(30, 27, 49) 40%,
+      rgb(53, 44, 83)
+    );
+    border-radius: 10px;
+    .deleteChatsButton {
+      display: block;
+    }
+  }
+}
+button {
+  /* убираем все внутренние отступы и границы */
+
+  border: none;
+
+
+  /* отключаем все стили кнопки */
+  background-color: transparent;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  text-align: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.deleteChatsButton {
+  font-size: 20px;
+  margin-left: auto;
+  display: none;
+  cursor: pointer;
+  transition: 0.5s;
+  &:hover {
+    transform: rotate(90deg);
+    
   }
 }

@@ -6,6 +6,8 @@ import { db } from "../../firebase";
 import styles from "./Chats.module.scss";
 import { TfiThemifyFavicon } from "react-icons/tfi";
 import UpdateUserDataInChats from "../../hooks/useUpdateUserDataInMessage";
+import { RxCross2 } from "react-icons/rx";
+import UseDeleteChat from "../../hooks/useDeleteChat";
 
 const Chats = () => {
   const [chats, setChats] = useState([]);
@@ -35,7 +37,11 @@ const Chats = () => {
 
 
 
+const deleteChat = (frienduid) => {
 
+alert('Завтра обновление :)')
+  // UseDeleteChat(currentUser.uid,frienduid)
+}
 
 
   const handleSelect = (u) => {
@@ -52,6 +58,7 @@ const Chats = () => {
             key={chat[0]}
             onClick={() => handleSelect(chat[1].userInfo)}
           >
+        
             {chat[1].userInfo.photoURL ? (
               <img
                 className={styles.avatarMessage}
@@ -63,9 +70,14 @@ const Chats = () => {
             )}
             <div>
               <h4>{chat[1].userInfo.displayName}</h4>
+              
               <p>{chat[1].lastMessage?.text}</p>
             </div>
+            
+            
+            <button className={styles.deleteChatsButton} onClick={()=>deleteChat(chat[1].userInfo.uid)}><RxCross2 /></button>
           </div>
+          
         ))}
     </>
   );

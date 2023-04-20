@@ -88,8 +88,8 @@ const Profile = () => {
                 />
                 <div className={styles.profileInfo}>
                   <h4>{userInfo.displayName}</h4>
-                  <h4>{userInfo.email}</h4>
-                  <h5>{userInfo.uid}</h5>
+                  <h4>email: {userInfo.email}</h4>
+                  <h5>uid: {userInfo.uid}</h5>
                 </div>
               </div>
             </Row>

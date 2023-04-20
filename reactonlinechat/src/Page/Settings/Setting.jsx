@@ -165,7 +165,7 @@ const Setting = () => {
                   >
                     Сохранить
                   </Button>
-                  <Button onClick={clickDeleteAccount}>Удалить Аккаунт</Button>
+                  <Button className={styles.buttonDelete} onClick={clickDeleteAccount}>Удалить Аккаунт</Button>
                 </Form.Item>
                 
               </Form>
