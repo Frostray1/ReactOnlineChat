@@ -37,10 +37,10 @@ const Chats = () => {
 
 
 
-const deleteChat = (frienduid) => {
+const deleteChat = (friendUid) => {
 
-alert('Завтра обновление :)')
-  // UseDeleteChat(currentUser.uid,frienduid)
+// alert('Завтра обновление :)')
+  UseDeleteChat(currentUser.uid,friendUid)
 }
 
 

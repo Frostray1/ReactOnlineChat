@@ -83,7 +83,7 @@ const Home = () => {
                 <Row>
                   <Search />
                 </Row>
-                <Row>
+                <Row >
                   <Chats />
                 </Row>
               </Col>
